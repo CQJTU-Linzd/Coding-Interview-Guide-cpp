@@ -1,6 +1,6 @@
 #include"headFile.h"
 
-// Õ»ÊµÏÖ¶ÓÁĞ
+// æ ˆå®ç°é˜Ÿåˆ—
 class TwoStacksQueue {
     stack<int>stackPush;
     stack<int>stackPop;
@@ -32,31 +32,6 @@ public:
             return 0;
         } else {
             return stackPop.top();
-        }
-    }
-};
-
-// Ê¹ÓÃµİ¹éÄæĞòÒ»¸öÕ»
-class ReverseStackByRecur {
-public:
-    void reverse(stack<int>& stk) {
-        if (stk.empty()) {
-            return;
-        }
-        int i = f(stk);
-        reverse(stk);
-        stk.push(i);
-    }
-    // µ¯³öÕ»µ×ÔªËØ²¢·µ»Ø
-    int f(stack<int>& stk) {
-        int result = stk.top();
-        stk.pop();
-        if (stk.empty()) {
-            return result;
-        } else {
-            int bottom = f(stk);
-            stk.push(result);
-            return bottom;
         }
     }
 };
