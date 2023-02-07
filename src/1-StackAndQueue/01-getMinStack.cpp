@@ -1,13 +1,13 @@
 #include"headFile.h"
 
-// ÊµÏÖÒ»¸öÌØÊâµÄÕ»£¬ÔÚÊµÏÖÕ»µÄ»ù±¾¹¦ÄÜµÄ»ù´¡ÉÏ£¬ÄÜ¹»·µ»ØÕ»ÖĞ×îĞ¡ÔªËØ
+// å®ç°ä¸€ä¸ªç‰¹æ®Šçš„æ ˆï¼Œåœ¨å®ç°æ ˆçš„åŸºæœ¬åŠŸèƒ½çš„åŸºç¡€ä¸Šï¼Œèƒ½å¤Ÿè¿”å›æ ˆä¸­æœ€å°å…ƒç´ 
 
-// ·½°¸1
+// æ–¹æ¡ˆ1
 class getMinStack1 {
-    stack<int>stackData; // ±£´æµ±Ç°Õ»ÖĞµÄÔªËØ
-    stack<int>stackMin; // ±£´æÃ¿Ò»²½µÄ×îĞ¡Öµ
+    stack<int>stackData; // ä¿å­˜å½“å‰æ ˆä¸­çš„å…ƒç´ 
+    stack<int>stackMin; // ä¿å­˜æ¯ä¸€æ­¥çš„æœ€å°å€¼
 public:
-    // Ñ¹ÈëÊı¾İ
+    // å‹å…¥æ•°æ®
     void push(int newNum) {
         stackData.push(newNum);
         if (stackMin.empty()) {
@@ -18,7 +18,7 @@ public:
             }
         }
     }
-    // µ¯³öÊı¾İ
+    // å¼¹å‡ºæ•°æ®
     void pop() {
         if (!stackData.empty()) {
             int value = stackData.top();
@@ -37,10 +37,10 @@ public:
     }
 };
 
-// ·½°¸2
+// æ–¹æ¡ˆ2
 class getMinStack2 {
-    stack<int>stackData; // ±£´æµ±Ç°Õ»ÖĞµÄÔªËØ
-    stack<int>stackMin; // ±£´æÃ¿Ò»²½µÄ×îĞ¡Öµ
+    stack<int>stackData; // ä¿å­˜å½“å‰æ ˆä¸­çš„å…ƒç´ 
+    stack<int>stackMin; // ä¿å­˜æ¯ä¸€æ­¥çš„æœ€å°å€¼
 public:
     void push(int newNum) {
         stackData.push(newNum);
