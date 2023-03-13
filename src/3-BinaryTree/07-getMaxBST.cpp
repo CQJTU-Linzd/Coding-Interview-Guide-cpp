@@ -1,10 +1,10 @@
 #include"headFile.h"
 
-// ×î´ó¶þ²æËÑË÷×ÓÊ÷
+// æœ€å¤§äºŒå‰æœç´¢å­æ ‘
 class MaxBST {
 public:
 
-    // ·¨Ò» ÊéÉÏµÄ
+    // æ³•ä¸€ ä¹¦ä¸Šçš„
     class Info {
     public:
         TreeNode* maxBSTHead;
@@ -23,25 +23,25 @@ public:
         return process(head).maxBSTHead;
     }
 
-    // ¿ÉÄÜÐÔÒ»£º×î´ó¶þ²æËÑË÷×ÓÊ÷À´×ÔheadµÄ×ó×ÓÊ÷
-    // ¿ÉÄÜÐÔ¶þ£º×î´ó¶þ²æËÑË÷×ÓÊ÷À´×ÔheadµÄÓÒ×ÓÊ÷
-    // ¿ÉÄÜÐÔÈý£ºheadÓëËüµÄ×ó×ÓÊ÷ºÍÓÒ×ÓÊ÷¹²Í¬×é³É×î´ó¶þ²æËÑË÷×ÓÊ÷
+    // å¯èƒ½æ€§ä¸€ï¼šæœ€å¤§äºŒå‰æœç´¢å­æ ‘æ¥è‡ªheadçš„å·¦å­æ ‘
+    // å¯èƒ½æ€§äºŒï¼šæœ€å¤§äºŒå‰æœç´¢å­æ ‘æ¥è‡ªheadçš„å³å­æ ‘
+    // å¯èƒ½æ€§ä¸‰ï¼šheadä¸Žå®ƒçš„å·¦å­æ ‘å’Œå³å­æ ‘å…±åŒç»„æˆæœ€å¤§äºŒå‰æœç´¢å­æ ‘
     Info process(TreeNode* head) {
         if (head == NULL) {
             return Info(NULL, 0, INT_MAX, INT_MIN);
         }
         Info leftInfo = process(head->left);
         Info rightInfo = process(head->right);
-        // »ñÈ¡ÒÔheadÎªÍ·µÄÕû¿ÃÊ÷µÄ×îÐ¡Öµ
+        // èŽ·å–ä»¥headä¸ºå¤´çš„æ•´æ£µæ ‘çš„æœ€å°å€¼
         int Min = min({ head->val, leftInfo.min, rightInfo.min });
-        // »ñÈ¡ÒÔheadÎªÍ·µÄÕû¿ÃÊ÷µÄ×î´óÖµ
+        // èŽ·å–ä»¥headä¸ºå¤´çš„æ•´æ£µæ ‘çš„æœ€å¤§å€¼
         int Max = max({ head->val, leftInfo.max, rightInfo.max });
-        // Ö»¿¼ÂÇ¿ÉÄÜÐÔÒ»¡¢¶þ
+        // åªè€ƒè™‘å¯èƒ½æ€§ä¸€ã€äºŒ
         int maxSize = max(leftInfo.maxBSTSize, rightInfo.maxBSTSize);
         TreeNode* maxHead = leftInfo.maxBSTSize >= rightInfo.maxBSTSize
             ? leftInfo.maxBSTHead : rightInfo.maxBSTHead;
 
-        // ÅÐ¶ÏÊÇ·ñ´æÔÚµÚÈýÖÖ¿ÉÄÜÐÔ
+        // åˆ¤æ–­æ˜¯å¦å­˜åœ¨ç¬¬ä¸‰ç§å¯èƒ½æ€§
         if (leftInfo.maxBSTHead == head->left && rightInfo.maxBSTHead == head->right
             && head->val > leftInfo.max && head->val < rightInfo.min) {
             maxSize = leftInfo.maxBSTSize + 1 + rightInfo.maxBSTSize;
@@ -51,7 +51,7 @@ public:
     }
 
 
-    // ·¨¶þ ×Ô¼ºÐ´µÄ
+    // æ³•äºŒ è‡ªå·±å†™çš„
     class ReturnType {
     public:
         TreeNode* maxBSTHead;
@@ -100,4 +100,29 @@ public:
         }
         return ReturnType(maxHead, maxSize, Max, Min, isBST);
     }
+    
+    // for test
+
+    // ç”Ÿæˆå±‚æ•°ä¸º1~maxlevelå±‚ï¼Œå€¼åœ¨l~rçš„éšæœºäºŒå‰æ ‘
+    TreeNode* randomBinaryTree(int maxlevel, int l, int r) {
+        if (maxlevel == 0 || rand() % 11 <= 1) {
+            return nullptr;
+        }
+        TreeNode* head = new TreeNode(rand() % (r - l + 1) + l);
+        head->left = randomBinaryTree(maxlevel - 1, l, r);
+        head->right = randomBinaryTree(maxlevel - 1, l, r);
+        return head;
+    }
+
+    void test() {
+        srand(time(0));
+        for (int test = 0; test < 10000; test++) {
+            TreeNode* head = randomBinaryTree(15, 0, 1000);
+            if (getMaxBST1(head) != getMaxBST2(head)) {
+                cout << "fuck!!!" << endl;
+            }
+        }
+        cout << "end" << endl;
+    }
+    
 };
