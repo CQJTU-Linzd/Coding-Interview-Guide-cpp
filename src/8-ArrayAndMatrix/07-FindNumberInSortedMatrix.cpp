@@ -3,7 +3,7 @@
 class FindNumberInSortedMatrix {
 public:
 
-    // ¾ØÕóÃ¿ĞĞÃ¿ÁĞ¶¼ÓĞĞò
+    // çŸ©é˜µæ¯è¡Œæ¯åˆ—éƒ½æœ‰åº
     bool find(vector<vector<int>>& mat, int target) {
         int n = mat.size();
         int m = mat[0].size();
